@@ -1,129 +1,35 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, ArrowDown, FileDown, Cpu, Layers, Network } from "lucide-react";
+import { Github, ArrowDown, FileDown } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { withBasePath } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/ui/FadeIn";
 
-function HeroVisual() {
-  const nodes = [
-    { x: "20%", y: "25%", delay: 0 },
-    { x: "50%", y: "15%", delay: 0.2 },
-    { x: "75%", y: "30%", delay: 0.4 },
-    { x: "35%", y: "55%", delay: 0.3 },
-    { x: "65%", y: "60%", delay: 0.5 },
-    { x: "50%", y: "80%", delay: 0.6 },
-  ];
+function HeroProfile() {
+  const profileSrc = withBasePath("/picture.jpg");
 
   return (
-    <div className="relative flex h-full min-h-[360px] items-center justify-center lg:min-h-[520px]">
-      <div className="absolute inset-0 rounded-[24px] bg-grid opacity-50" />
-      <div className="absolute inset-0 rounded-[24px] bg-gradient-to-br from-primary/10 via-transparent to-accent/5" />
-      <div className="absolute top-1/3 left-1/3 h-48 w-48 rounded-full bg-primary/15 blur-[90px]" />
-      <div className="absolute right-1/4 bottom-1/4 h-36 w-36 rounded-full bg-accent/10 blur-[70px]" />
-
-      <svg
-        className="absolute inset-0 h-full w-full rounded-[24px] opacity-20"
-        viewBox="0 0 400 400"
-        fill="none"
-      >
-        <motion.line
-          x1="80" y1="100" x2="200" y2="60"
-          stroke="rgba(59,130,246,0.4)" strokeWidth="1"
-          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-        />
-        <motion.line
-          x1="200" y1="60" x2="300" y2="120"
-          stroke="rgba(59,130,246,0.4)" strokeWidth="1"
-          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-          transition={{ duration: 1.5, delay: 0.7 }}
-        />
-        <motion.line
-          x1="140" y1="220" x2="260" y2="240"
-          stroke="rgba(34,197,94,0.3)" strokeWidth="1"
-          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-          transition={{ duration: 1.5, delay: 0.9 }}
-        />
-        <motion.line
-          x1="200" y1="60" x2="140" y2="220"
-          stroke="rgba(255,255,255,0.1)" strokeWidth="1"
-          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-          transition={{ duration: 1.5, delay: 1.1 }}
-        />
-      </svg>
-
-      {nodes.map((node, i) => (
-        <motion.div
-          key={i}
-          className="absolute h-3 w-3 rounded-full border border-primary/40 bg-primary/20"
-          style={{ left: node.x, top: node.y }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.8 + node.delay }}
-        />
-      ))}
-
+    <div className="flex h-full min-h-[360px] items-center justify-center lg:min-h-[520px]">
       <motion.div
-        className="glass-card gradient-border relative w-full max-w-sm p-6 glow-primary"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="relative flex items-center justify-center"
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="mb-4 flex items-center gap-2">
-          <Network size={14} className="text-primary" />
-          <span className="text-xs font-medium tracking-wider text-gray">
-            시스템 구조
-          </span>
-        </div>
-
-        <div className="space-y-3">
-          {[
-            { icon: Layers, label: "플랫폼 레이어", width: "85%" },
-            { icon: Cpu, label: "임베디드 코어", width: "72%" },
-            { icon: Network, label: "데이터 흐름", width: "94%" },
-          ].map((item, i) => (
-            <motion.div
-              key={item.label}
-              className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 + i * 0.15 }}
-            >
-              <item.icon size={16} className="text-primary" />
-              <div className="flex-1">
-                <p className="text-xs text-gray">{item.label}</p>
-                <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
-                  <motion.div
-                    className="h-full rounded-full bg-gradient-to-r from-primary to-primary/60"
-                    initial={{ width: 0 }}
-                    animate={{ width: item.width }}
-                    transition={{ duration: 1, delay: 0.8 + i * 0.2, ease: "easeOut" }}
-                  />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="glass absolute -top-4 -right-2 rounded-2xl px-4 py-2.5"
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <span className="text-xs font-medium text-accent">양산 검증</span>
-      </motion.div>
-
-      <motion.div
-        className="glass absolute -bottom-2 -left-2 rounded-2xl px-4 py-2.5"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      >
-        <span className="text-xs font-medium text-primary">구조 설계</span>
+        <div
+          className="absolute h-[240px] w-[240px] rounded-full bg-primary/25 blur-2xl"
+          aria-hidden="true"
+        />
+        <img
+          src={profileSrc}
+          alt={`${SITE_CONFIG.name} 프로필 사진`}
+          width={240}
+          height={240}
+          className="relative h-[240px] w-[240px] rounded-full border border-white/25 object-cover shadow-[0_20px_50px_rgba(0,0,0,0.35),0_0_40px_rgba(59,130,246,0.2)]"
+        />
       </motion.div>
     </div>
   );
@@ -172,7 +78,7 @@ export function Hero() {
           </div>
 
           <FadeIn delay={0.3} direction="right">
-            <HeroVisual />
+            <HeroProfile />
           </FadeIn>
         </div>
       </Container>

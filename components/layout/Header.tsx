@@ -47,10 +47,15 @@ export function Header() {
       <Container className="flex h-full items-center justify-between">
         <Link
           href="#hero"
-          className="text-lg font-bold tracking-tight text-text transition-colors hover:text-primary"
+          className="group transition-colors hover:text-primary"
           onClick={handleNavClick}
         >
-          {SITE_CONFIG.name}
+          <span className="block text-lg font-bold tracking-tight text-text group-hover:text-primary">
+            {SITE_CONFIG.name}
+          </span>
+          <span className="mt-0.5 block text-[11px] font-normal tracking-widest text-gray">
+            {SITE_CONFIG.headerTagline}
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="메인 네비게이션">

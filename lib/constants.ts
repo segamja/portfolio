@@ -7,6 +7,7 @@ export const SITE_CONFIG = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
   email: "segamja@gmail.com",
   github: "https://github.com/segamja/portfolio",
+  headerTagline: "설계로 품질을 만드는 개발자",
   brandMessage: "복잡한 문제를 단순한 구조로.",
   headlineLine1: "복잡한 문제를",
   headlineLine2: "단순한 구조로.",
